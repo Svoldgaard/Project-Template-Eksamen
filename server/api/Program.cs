@@ -1,41 +1,50 @@
-var builder = WebApplication.CreateBuilder(args);
+using api;
+using dataaccess;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.MapOpenApi();
-}
+    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    {
+        var appOptions = services.AddAppOptions(configuration);
 
-app.UseHttpsRedirection();
+        //services.AddScoped<ILibraryService<BookDto, CreateBookDto, UpdateBookDto>, BookService>();
+        //services.AddScoped<BookDetailsService>();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+         // services.AddDbContext<MyDbContext>(conf =>
+         // {
+         //     conf.UseNpgsql(appOptions.DbConnectionString);
+         // });
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+        services.AddControllers();
+        services.AddOpenApiDocument();
+        services.AddProblemDetails();
+        //services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddCors();
+    }
 
-app.Run();
+    public static async Task Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+        
+        ConfigureServices(builder.Services, builder.Configuration);
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        var app = builder.Build();
+
+        app.UseExceptionHandler();
+
+        app.UseCors(config => config
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowAnyOrigin()
+            .SetIsOriginAllowed(x => true));
+
+        app.MapControllers();
+        app.UseOpenApi();
+        app.UseSwaggerUi();
+
+        //await app.GenerateApiClientsFromOpenApi("/../../client/src/generated-ts-client.ts");
+
+        app.Run();
+    }
 }
