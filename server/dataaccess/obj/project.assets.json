@@ -8,19 +8,19 @@
     "net9.0": []
   },
   "packageFolders": {
-    "/Users/majkensvoldgaard/.nuget/packages/": {}
+    "C:\\Users\\nadja\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/majkensvoldgaard/Desktop/Eksamen3Semester/server/dataaccess/dataaccess.csproj",
+      "projectUniqueName": "C:\\EASV\\Project-Template-Eksamen\\server\\dataaccess\\dataaccess.csproj",
       "projectName": "dataaccess",
-      "projectPath": "/Users/majkensvoldgaard/Desktop/Eksamen3Semester/server/dataaccess/dataaccess.csproj",
-      "packagesPath": "/Users/majkensvoldgaard/.nuget/packages/",
-      "outputPath": "/Users/majkensvoldgaard/Desktop/Eksamen3Semester/server/dataaccess/obj/",
+      "projectPath": "C:\\EASV\\Project-Template-Eksamen\\server\\dataaccess\\dataaccess.csproj",
+      "packagesPath": "C:\\Users\\nadja\\.nuget\\packages\\",
+      "outputPath": "C:\\EASV\\Project-Template-Eksamen\\server\\dataaccess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/majkensvoldgaard/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\nadja\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -44,7 +44,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -60,12 +60,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[9.0.10, 9.0.10]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[9.0.10, 9.0.10]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[9.0.10, 9.0.10]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\nadja\\.dotnet\\sdk\\10.0.100-rc.2.25502.107/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
